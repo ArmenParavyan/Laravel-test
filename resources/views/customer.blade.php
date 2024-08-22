@@ -1,6 +1,7 @@
 <h1>
-    Custumer
+    Custumers
 </h1> 
+<br>
 
 
 <table>
@@ -24,8 +25,16 @@
             <td>
                 {{$value->age}}
             </td>
+            <td>
+                <button>
+                    <a href="{{route('customer.edit', $value['id'])}}" 
+                        style="text-decoration: none">
+                        Edit
+                    </a>
+                </button>
+            </td>
         </tr>
+
     @endforeach
 </table>
 
-{{$data->links()}}

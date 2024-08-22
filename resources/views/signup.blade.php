@@ -18,6 +18,11 @@
             <label class="form-label" for="typeEmailX">Password</label>
             <input type="password" name="password" class="form-control form-control-lg" />
             <div class="text-danger" id="emailError"></div>
+        </div> 
+        <br>
+        <div>
+            <label for="password_confirmation">Password confirmation</label>
+            <input type="password" name="password_confirmation" id="password_confirmation" />
         </div>
         <br>
         <input type="submit" value="Register" id="register">

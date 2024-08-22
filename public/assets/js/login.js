@@ -1,5 +1,5 @@
-const register = document.getElementById("register");
-register.addEventListener("click", function(event) {
+const login = document.getElementById("login");
+login.addEventListener("click", function(event) {
     event.preventDefault(); 
     myFunction();
 });
@@ -9,7 +9,7 @@ function myFunction() {
     const formData = new FormData(form);
 
     const formDataObj = Object.fromEntries(formData.entries());
-    fetch('/api/register', {
+    fetch('/api/login', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
@@ -25,7 +25,6 @@ function myFunction() {
             localStorage.setItem('auth_token', data.token);
             window.location.href = "/dashboard";
         }
-        
     })
     .catch(error => {
         console.error('Ошибка:', error);

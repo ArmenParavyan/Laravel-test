@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,6 +20,7 @@ class BookFactory extends Factory
     {
         return [
             'author' => $this->faker->name, 
+            'customer_id' => Customer::inRandomOrder()->first()->id,
             'title' => $this->faker->sentence,  
             'email' => $this->faker->safeEmail, 
             'age' => $this->faker->numberBetween(18, 100), 

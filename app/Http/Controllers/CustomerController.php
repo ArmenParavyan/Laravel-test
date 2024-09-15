@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomerRequest;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 
@@ -18,28 +19,44 @@ class CustomerController extends Controller
         return view("customer-create");
     }
 
-    // public function update() 
-    // {
-    //     return view("cusomer-update");
-    // }
-
-    public function createCustomer(Request $request) 
+    public function createCustomer(CustomerRequest $request) 
     {
         $data = $request->all();
-        $customer = Customer::create($data);
+        Customer::create($data);
         return back();
     }
 
     public function editCustomer($id) 
     {
         $customer = Customer::find($id);
+        
         return view("cusomer-update", compact("customer"));
     }
-
-    public function updateCustomer(Request $request) {
-        echo 'Բա ստեղ ինչ՞';
-        $customer = $request->all();
-        $data = Customer::update($customer);
-        return view("customer", compact("data"));
+    public function updateCustomer(CustomerRequest $request) 
+    {
+        $customer = Customer::find($request->id);
+        $customer->update($request->validated()); 
+        return redirect('/customer');
     }
+
+    public function destroyCustomer($id) 
+    {
+        $customer = Customer::find($id);
+        $customer->delete(); 
+        return redirect('/customer');
+    }
+
+    public function filterByGender(Request $request) 
+    {
+        $gender = $request->gender;
+        if ($gender === 'all') {
+            $data = Customer::all(); 
+        } else {
+            $data = Customer::where('gender', $gender)->get(); 
+        }
+        return view("customer", compact("data","gender"));
+    }
+    
+    
+
 }

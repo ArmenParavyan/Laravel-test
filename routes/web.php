@@ -39,14 +39,14 @@ Route::get('/signin', [AuthController::class, 'viewSignIn']);
 
 Route::get('/create-customer', [CustomerController::class, 'create']);
 
-Route::get('/update-customer', [CustomerController::class, 'update']);
-
 Route::post('/create-customer', [CustomerController::class, 'createCustomer'])->name('customer.create');
 
 Route::post('/update-customer', [CustomerController::class, 'updateCustomer'])->name('customer.update');
 
 Route::get('/customer-edit/{id}', [CustomerController::class, 'editCustomer'])->name('customer.edit');
 
+Route::get('/destroy/{id}', [CustomerController::class, 'destroyCustomer'])->name('destroy');
 
+Route::post('/customer', [CustomerController::class, 'filterByGender'])->name('customer.filtr');;
 
-
+Route::get('/books', [BookController::class, 'test']);

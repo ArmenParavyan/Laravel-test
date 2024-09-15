@@ -12,7 +12,11 @@ class BookController extends Controller
         return view('book', compact('data')); // compact('data')-ով $data-ն ուղարկում ենք book-ի մեջ
     }
 
-
+    public function test() 
+    {
+        $data = Book::with('customer')->limit(5)->get();
+        dd($data);
+    }
     public function create() {
         // $data = ['author' => 'Karen', 'title' => 'Nature', 'email' => 'karen@gmail.com', 
         //         'age' => 32, 'is_book' => true, 'birthday' => '1990:05:24']; 

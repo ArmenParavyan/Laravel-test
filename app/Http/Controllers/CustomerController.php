@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerRequest;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 
@@ -10,7 +11,11 @@ class CustomerController extends Controller
 {
     public function index() 
     {
-        $data = Customer::all();
+        $data = Customer::orderBy("created_at","desc")->paginate(10);
+        //  $data = Customer::with("book")->take(10)->get()->toArray();
+        // $data = Post::with("comments")->take(10)->get()->toArray();
+        // $data = Customer::with("profile")->take(10)->get()->toArray();
+        // dd($data);
         return view("customer", compact("data"));
     }
 

@@ -12,4 +12,9 @@ class Post extends Model
     protected $fillable = ['title', 'content'];
 
     protected $table = 'posts';
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

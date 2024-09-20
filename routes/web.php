@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApartmentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -8,9 +9,10 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CustomerController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [CustomerController::class,'index'])->name('home');
 
 Route::get('/user', [UserController::class, 'index']);
 
@@ -50,3 +52,5 @@ Route::get('/destroy/{id}', [CustomerController::class, 'destroyCustomer'])->nam
 Route::post('/customer', [CustomerController::class, 'filterByGender'])->name('customer.filtr');;
 
 Route::get('/books', [BookController::class, 'test']);
+
+Route::get('/apartment', [ApartmentController::class,'index']);
